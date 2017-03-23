@@ -2,9 +2,9 @@
 Sidebar navigation shell for FOAFIAF visualization page
 
 
-<!--Based on web app code at http://ifis.iowafloodcenter.org/ifis/app/ -->
-<!--
-Todos
+Based on web app code at http://ifis.iowafloodcenter.org/ifis/app/ 
+
+## Todos
 
 - shell css working properly cross platform cross browser (seems to work cross browser on Win10, not iOS, MacOS, Android)
 
@@ -21,4 +21,4 @@ Todos
 
 -- would like to implement Settings / Options / Snapshot
 -- would like to use mobile version ala http://ifis.iowafloodcenter.org/ifis/mobile/
--->
+
