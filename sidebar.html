@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Acknowledgement -->
+  	<!--// Significant insiration for navigation shell and selection functionality derived from http://ifis.iowafloodcenter.org/ifis/app/ -->
+  	
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="content-language" content="en">
+	<link rel="icon" type="image/png" href="favicon16.png" sizes="16x16">
+  	<!-- iOS optimization -->
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+  	<!-- SEO -->
+  	<meta charset="UTF-8">
+  	<meta name="description" content="">
+  	<meta name="keywords" content="">
+  	<meta name="author" content="Asterius Media LLC">
+  	<!-- Page title -->
+  	<title>FOAFIAF Navigration Sidebar</title>
+  	
+
+
+	
+	<!-- Load 3rd party CSS -->
+    <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+	
+	<!-- Load 3rd party JS -->
+	<script src="https://use.fontawesome.com/0b31a311df.js"></script>
+	<script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/26/17/common.js"></script>
+	<script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/26/17/util.js"></script>
+	<script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/26/17/marker.js"></script>
+	<script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/26/17/map.js"></script>
+	<script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/26/17/controls.js"></script>
+	<script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/26/17/places_impl.js"></script>
+	<script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/26/17/overlay.js"></script>
+	<script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/26/17/onion.js"></script>
+	<script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/26/17/kml.js"></script>
+	<script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/26/17/infowindow.js"></script>
+	<script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/26/17/stats.js"></script>
+
+
+	<!-- CSS -->
+	<style type="text/css">.gm-style .gm-style-cc span,.gm-style .gm-style-cc a,.gm-style .gm-style-mtc div{font-size:10px}</style><style type="text/css">@media print {  .gm-style .gmnoprint, .gmnoprint {    display:none  }}@media screen {  .gm-style .gmnoscreen, .gmnoscreen {    display:none  }}</style><style type="text/css">.pac-container{background-color:#fff;position:absolute!important;z-index:1000;border-radius:2px;border-top:1px solid #d9d9d9;font-family:Arial,sans-serif;box-shadow:0 2px 6px rgba(0,0,0,0.3);-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;overflow:hidden}.pac-logo:after{content:"";padding:1px 1px 1px 0;height:16px;text-align:right;display:block;background-image:url(https://maps.gstatic.com/mapfiles/api-3/images/powered-by-google-on-white3.png);background-position:right;background-repeat:no-repeat;background-size:120px 14px}.hdpi.pac-logo:after{background-image:url(https://maps.gstatic.com/mapfiles/api-3/images/powered-by-google-on-white3_hdpi.png)}.pac-item{cursor:default;padding:0 4px;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;line-height:30px;text-align:left;border-top:1px solid #e6e6e6;font-size:11px;color:#999}.pac-item:hover{background-color:#fafafa}.pac-item-selected,.pac-item-selected:hover{background-color:#ebf2fe}.pac-matched{font-weight:700}.pac-item-query{font-size:13px;padding-right:3px;color:#000}.pac-icon{width:15px;height:20px;margin-right:7px;margin-top:6px;display:inline-block;vertical-align:top;background-image:url(https://maps.gstatic.com/mapfiles/api-3/images/autocomplete-icons.png);background-size:34px}.hdpi .pac-icon{background-image:url(https://maps.gstatic.com/mapfiles/api-3/images/autocomplete-icons_hdpi.png)}.pac-icon-search{background-position:-1px -1px}.pac-item-selected .pac-icon-search{background-position:-18px -1px}.pac-icon-marker{background-position:-1px -161px}.pac-item-selected .pac-icon-marker{background-position:-18px -161px}.pac-placeholder{color:gray}</style><style type="text/css">.gm-style-pbc{transition:opacity ease-in-out;background-color:rgba(0,0,0,0.45);text-align:center}.gm-style-pbt{font-size:22px;color:white;font-family:Roboto,Arial,sans-serif;position:relative;margin:0;top:50%;-webkit-transform:translateY(-50%);-ms-transform:translateY(-50%);transform:translateY(-50%)}</style><style type="text/css">.gm-style{font-family:Roboto,Arial,sans-serif;font-size:11px;font-weight:400;text-decoration:none}.gm-style img{max-width:none}</style>
+	<!--<link rel="stylesheet" type="text/css" href="css/sidebar.css">-->
+	<link rel="stylesheet" type="text/css" href="http://ifis.iowafloodcenter.org/ifis/app/inc/ifis.style.min.css?11.0.0.9">
+
+	<style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+	.en-markup-crop-options {
+	    top: 18px !important;
+	    left: 50% !important;
+	    margin-left: -100px !important;
+	    width: 200px !important;
+	    border: 2px rgba(255,255,255,.38) solid !important;
+	    border-radius: 4px !important;
+	}
+	
+	.en-markup-crop-options div div:first-of-type {
+	    margin-left: 0px !important;
+	}
+	</style>
+	
+	
+	<!-- JS -->
+
+	<script>
+	function changeView(view) {
+		
+		console.log('changeView', view)
+		
+		if (view === 'network') {
+			
+			var networkFrame = document.getElementById("frameNetworks");  
+			networkFrame.style.visibility="visible";
+			networkFrame.style.display="block";
+			networkFrame.style.opacity= 100 ;
+			
+			var timelineFrame = document.getElementById("frameTimelines");  
+			timelineFrame.style.visibility="hidden";
+			timelineFrame.style.display="none";
+			timelineFrame.style.opacity= 0 ;
+			
+			var projectFrame = document.getElementById("frameProjects");  
+			projectFrame.style.visibility="hidden";
+			projectFrame.style.display="none";
+			projectFrame.style.opacity= 0 ;
+			
+			var locationFrame = document.getElementById("frameLocations");  
+			locationFrame.style.visibility="hidden";
+			locationFrame.style.display="none";
+			locationFrame.style.opacity= 0 ;
+			
+		}
+		if (view === 'location') {
+			
+			var networkFrame = document.getElementById("frameNetworks");  
+			networkFrame.style.visibility="hidden";
+			networkFrame.style.display="none";
+			networkFrame.style.opacity= 0 ;
+			
+			var timelineFrame = document.getElementById("frameTimelines");  
+			timelineFrame.style.visibility="hidden";
+			timelineFrame.style.display="none";
+			timelineFrame.style.opacity= 0 ;
+			
+			var projectFrame = document.getElementById("frameProjects");  
+			projectFrame.style.visibility="hidden";
+			projectFrame.style.display="none";
+			projectFrame.style.opacity= 0 ;
+			
+			var locationFrame = document.getElementById("frameLocations");  
+			locationFrame.style.visibility="visible";
+			locationFrame.style.display="block";
+			locationFrame.style.opacity= 100 ;
+			
+		}
+		if (view === 'project') {
+			
+			var networkFrame = document.getElementById("frameNetworks");  
+			networkFrame.style.visibility="hidden";
+			networkFrame.style.display="none";
+			networkFrame.style.opacity= 0 ;
+			
+			var timelineFrame = document.getElementById("frameTimelines");  
+			timelineFrame.style.visibility="hidden";
+			timelineFrame.style.display="none";
+			timelineFrame.style.opacity= 0 ;
+			
+			var projectFrame = document.getElementById("frameProjects");  
+			projectFrame.style.visibility="visible";
+			projectFrame.style.display="block";
+			projectFrame.style.opacity= 100 ;
+			
+			var locationFrame = document.getElementById("frameLocations");  
+			locationFrame.style.visibility="hidden";
+			locationFrame.style.display="none"
+			locationFrame.style.opacity= 0 ;
+			
+		}
+		if (view === 'timeline') {
+					
+			var networkFrame = document.getElementById("frameNetworks");  
+			networkFrame.style.visibility="hidden";
+			networkFrame.style.display="none";
+			networkFrame.style.opacity= 0 ;
+			
+			var timelineFrame = document.getElementById("frameTimelines");  
+			timelineFrame.style.visibility="visible";
+			timelineFrame.style.display="block";
+			timelineFrame.style.opacity= 100 ;
+			
+			var projectFrame = document.getElementById("frameProjects");  
+			projectFrame.style.visibility="hidden";
+			projectFrame.style.display="none";
+			projectFrame.style.opacity= 0 ;
+			
+			var locationFrame = document.getElementById("frameLocations");  
+			locationFrame.style.visibility="hidden";
+			locationFrame.style.display="none";
+			locationFrame.style.opacity= 0 ;
+			
+		}
+		
+		console.log('networkFrame.style.visibility', networkFrame.style.visibility)
+		console.log('timelineFrame.style.visibility', timelineFrame.style.visibility)
+		console.log('projectFrame.style.visibility', projectFrame.style.visibility)
+		console.log('locationFrame.style.visibility', locationFrame.style.visibility)
+		//alert('visible: ' + view)
+	}
+	</script>
+
+</head>
+<body onload="initialize()">
+	<!--<div id="ifislogo"><a href="" title="HOME" target="_top"><img src="TRWebLogo.png" id="logoimg" alt="Transform Rockford" style="width:100px;"></a></div>-->
+
+	<iframe id="frameNetworks" src="http://foafiaf.transformrockford.org/networks/index.html" height="100%" width="100%" style="display: none; visibility:hidden" allowfullscreen>
+    </iframe>
+    
+	<iframe id="frameLocations" src="http://foafiaf.transformrockford.org/locations/index.html" height="100%" width="100%" style="display: block; visibility:visible" allowfullscreen>
+	</iframe>
+
+    <iframe id="frameProjects" src="http://foafiaf.transformrockford.org/projects/index.html" height="100%" width="100%" style="display: none; visibility:hidden" allowfullscreen></iframe>>
+    </iframe>
+
+    <iframe id="frameTimelines" src="http://foafiaf.transformrockford.org/timelines/index.html" height="100%" width="100%" style="display: none; visibility:hidden" allowfullscreen></iframe>>
+    </iframe>
+
+
+    <aside>
+
+        <div id="new_panel_menu" style="right: -265px;">
+    
+    		<!--// netwrok relationships view selection tab and protoype serach and visibility options-->
+            <div id="np_1" class="nptab" style="display: none;">
+        		<div class="np_title">NETWORK VIEW</div>
+        		
+        		<a href="#" id="np105">Relationships Overview 
+        		    <span>View entity relationship and navigate focus to new entity</span>
+        		</a>
+        		<a href="#" id="np106">Entity Locator
+        		    <span>Entity Locator:<br>Click on a </span>
+        		</a>
+        		<a href="#" id="np103">My Location
+        		    <span>My Location:<br>Zoom automatically to your location on the map</span>
+        		</a>
+
+        		<div class="np_title np_sep">ENTITIES OF INTEREST</div>
+        		
+        		<div class="search_con"><input type="text" id="poi" name="poi" x-webkit-speech="" placeholder="search for places of interest" onkeydown="input_keypressed(0)" autocomplete="off"></div>
+        
+        		<div class="np_title np_sep">RECENT ADDITIONS</div>
+        		
+        		<div id="rview">
+        		    <!--<span id="cities">-->
+        		    <!--    <a href="?c=Rockton,_Illinois">Rockton, Illinois</a>-->
+        		    <!--    <a href="?c=Roscoe,_Illinois">Roscoe, Illinois</a>-->
+        		    <!--</span>-->
+        	    </div>
+        	    
+        	</div>
+
+
+			<!--// geo view selection tab and prototype layer visibility options-->
+            <div id="np_2" class="nptab" style="display: none;">
+        		<div class="np_title">LOCATION VIEW</div>
+        		<div id="new_layers"></div>
+        		<div class="np_title np_sep">SERVICES</div>
+        			<a href="#" id="np275">Traffic Conditions</a>
+        		    <a href="#" id="np274">Bicycling Routes</a>
+        		<div class="np_title np_sep">LAYERS</div>
+        		<div class="npsub" id="npcon_maplayers">
+        			<a href="#" id="np221">Counties</a>
+        			<a href="#" id="np222">Townships</a>
+        			<a href="#" id="np223">City Boundaries</a>
+        			<a href="#" id="np231">State Parks</a>
+        			<a href="#" id="np225">Water Bodies</a>
+        			<a href="#" id="np222">Zip Codes</a>
+        		</div>
+        	</div>
+        	
+        	
+        	<!--// startegy projects wheel view selection tab a visibility options-->
+        	<div id="np_3" class="nptab" style="display: none;">
+        		<div class="np_title">PROJECT VIEW</div>
+        		<span>Overall view of mission vision down to projects</span>
+        		<a href="#" id="np305">Hide Segments 
+        		    <span>Hide Segment Elements from Diagram</span>
+        		</a>
+        		<a href="#" id="np305">Hide Spokes 
+        		    <span>Hide Spoke Elements from Diagram</span>
+        		</a>
+        		<a href="#" id="np308">Hide Strategies
+        			<span>Hide Strategy Elements from Diagram</span>
+        		</a>
+        		<a href="#" id="np309">Hide Project
+        			<span>Hide Projects Elements from Diagram</span></a>
+        	</div>
+        	
+        	
+        	<!--// Timeline view selection tab a visibility options-->
+        	<div id="np_4" class="nptab" style="display: none;">
+        		<div class="np_title">TIMELINE VIEW</div>
+        		    <a href="#" id="np411" class="npact">Outputs
+        		        <span>Hide Output Milestones from Diagram</span>
+        		    </a>
+        		    <a href="#" id="np422" class="npact">Outcomes
+        		        <span>Hide Outcome Milestones from Diagram</span>
+        		    </a>
+        		    
+        		<div id="new_layers"></div>
+        		<!--<div class="np_title np_sep">MILESTONES</div>-->
+  
+        		<div class="np_title np_sep">YEARS</div>
+        		<div class="npsub" id="npcon_maplayers">
+        			<a href="#" id="np42017" class="npact">2017 <span>Hide 2017 Milestones</span></a>
+        			<a href="#" id="np42018" class="npact">2018 <span>Hide 2018 Milestones</span></a>
+        			<a href="#" id="np42018" class="npact">2019 <span>Hide 2019 Milestones</span></a>
+        			<a href="#" id="np42019" class="npact">2020 <span>Hide 2020 Milestones</span></a>
+        			<a href="#" id="np42021" class="npact">2021 <span>Hide 2021 Milestones</span></a>
+        			<a href="#" id="np42022" class="npact">2022 <span>Hide 2022 Milestones</span></a>
+        			<a href="#" id="np42023" class="npact">2023 <span>Hide 2023 Milestones</span></a>
+        			<a href="#" id="np42024" class="npact">2024 <span>Hide 2024 Milestones</span></a>
+        			<a href="#" id="np42025" class="npact">2025 <span>Hide 2025 Milestones</span></a>
+        		</div>
+        		
+        		<div class="np_title np_sep">SPOKES</div>
+                <div class="npsub" id="npcon_maplayers">
+        			<a href="#" id="np431" class="npact">ArtsRecreation</a>
+        		    <a href="#" id="np432" class="npact">EconomyJobs</a>
+        		    <a href="#" id="np433" class="npact">Education</a>
+        		    <a href="#" id="np434" class="npact">FamilyNeigborhoods</a>
+        		    <a href="#" id="np435" class="npact">FundingAlignment</a>
+        		    <a href="#" id="np436" class="npact">HealthyLifestyles</a>
+        		    <a href="#" id="np437" class="npact">LeadershipYouth</a>
+        		    <a href="#" id="np438" class="npact">LivingtheBrand</a>
+        		    <a href="#" id="np439" class="npact">PhysicalInfrastructure</a>
+        		    <a href="#" id="np4310" class="npact">Planning</a>
+        		    <a href="#" id="np4311" class="npact">Quality</a>
+        		    <a href="#" id="np4312" class="npact">UnityPrideCulture</a>
+        	    </div> 
+
+        	</div>
+                		
+            
+            <!--// prototype of additional tools, perhaps path finding and semantic serach ala Neo4j-->
+            <div id="np_8" class="nptab" style="display: none;">
+        		<div class="np_title">TOOLBOX</div>
+        		<a href="#" id="np806">Driving Directions
+        			<span>Get directions from A to B with  information</span></a>
+        			<div id="directions"><input type="text" id="pointa" placeholder="Point A: search for a place"><br><input type="text" id="pointb" placeholder="Point B: search for a place"><button class="cusbtn">ROUTE</button></div>
+        				<a href="#" id="np111">Distance &amp; Area Calculator
+        			<span>Calculate distance and area for selected points on the map...</span></a>
+        		<a href="#" id="np808">Find YYY Boundary
+        			<span>Click on a location on the map, and automatically find the YYY boundary...</span></a>
+        			<a href="#" id="np804">XXX Risk Calculator
+        			<span>Return period corresponds to the probability of the annual maximum river discharge exceeding a certain (given) value. For example, return period of 100 yrs corresponds to the probability of 1% of discharge exceeding that value, and return period of 10 yrs corresponds to 10% chance of flow exceeding a different (lower) value in a given year.</span></a>
+        	</div>
+    	
+    	
+    		<!--// prototype of additonal panel control with info about selected entities-->
+        	<div id="np_9" class="nptab" style="display: none;">
+				<div class="np_title">INFO PANELS</div>
+				<a href="#" id="np401" >Community Panel</a>
+				<a href="#" id="np402" style="display: none;"></a>
+				<a href="#" id="np403" >Control Panel</a>
+				<div class="np_title np_sep">OPTIONS</div>
+				<!--<a href="#" id="np708">Split Map View-->
+				<!--	<span>Create a view with two platforms side by side</span></a>-->
+				<!--<a href="#" id="np707">Split Map View (with sync)-->
+				<!--	<span>Create a view with two platforms side by side</span></a>-->
+				<a href="#" id="np702">Take Snapshot
+					<span>Create a link with the current settings of the platform</span></a>
+				<a href="#" id="np704">Send Feedback
+					<span>Send Feedback:<br>Send comments, bug reports and requests about the platform</span></a>
+			</div>
+			
+			
+			<!-- FUTURE: Manage / Admin going to secured page framed -->
+			
+        </div>
+	
+	
+	    <div id="np_notify" style="display: none;"></div>
+        <div id="np_info"></div>
+	
+	
+		<!-- prototype of side panels for element details --> 
+        <div id="np_sidepanel" style="display: block;">
+            <div id="panel_community" style="margin-top: 0px; display:none">
+        		<div class="np_close" onclick="init_panels('hide_com');"></div>
+        		<div id="community_info">
+        			<div class="np_title2 np_blue">STATE OF ILLINOIS</div><a href="?c=Illinois" class="qlink"><img src="http://ifis.iowafloodcenter.org/ifis/app/img/link2.png" title="Quick link to the community: Click this image and save link to favorites" border="0"></a>
+        			<div class="resources"><table cellspacing="0" cellpadding="0"><tbody><tr><td width="115"><b>Population</b></td><td>12,801,539</td></tr><tr><td><b>Land Area</b></td><td>57,914 sq mi</td></tr></tbody></table></div>
+        		</div>
+        		<div id="wat_char" style="display: none;">
+        			<div class="np_title2">WATERSHED CHARACTERISTICS</div>
+        			<div class="resources"><b>Area</b> 5981 </div>
+        		</div>
+        	</div>
+        	
+        	<div id="panel_community2" style="margin-top: 0px; display:none">
+        		<div class="np_close" onclick="init_panels('hide_com');"></div>
+        		<div id="community_info2">
+        			<div class="np_title2 np_blue">WINNEBAGO COUNTY</div><a href="?c=Winnebago_County,_Illinois" class="qlink"><img src="img/link2.png" title="Quick link to the community: Click this image and save link to favorites" border="0"></a>
+        			<div class="resources"><table cellspacing="0" cellpadding="0"><tbody><tr><td width="115"><b>Population</b></td><td> </td></tr><tr><td><b>Land Area</b></td><td> sq mi</td></tr></tbody></table></div>
+        		</div>
+        	</div>
+          
+            <div id="panel_control" style="display: none;">
+        		<div class="np_close" onclick="init_panels('hide_inun');"></div>
+        		<div id="control_">
+        			<div class="np_title2 np_blue"></div><a href="" class="qlink"><img src="img/link2.png" title="Quick link to the community flood map: Click this image and save link to favorites" border="0"></a>
+        			<div class="resources"></div>
+        		</div>	
+        	</div>
+          
+    
+        </div>
+    </aside>
+
+
+	<a id="iwis_home" href="http://www.transformrockford.org/" onmouseover="$('#poweredby').show()" onmouseout="$('#poweredby').hide()">
+	    <img src="img/icon/trlogo.png">
+	</a>
+	<div id="poweredby" style="font-size: 100%">Provided by      </div>
+	
+	<div id="new_panel_icons" style="display: block;">
+	    <div id="new_icongroup">
+	
+	    	<img id="npt1" name="RELATIONSHIP VIEW" src="img/icon/handshake_48.png" onclick="changeView('network')">
+	    	<img id="npt2" name="LOCATION VIEW" src="img/icon/world_48.png" onclick="changeView('location')">
+	    	<img id="npt3" name="PROJECT VIEW" src="img/icon/tree_48.png" onclick="changeView('project')" >
+	    	<img id="npt4" name="TIMELINE VIEW" src="img/icon/calendar_48.png" onclick="changeView('timeline')">
+	    	<img id="npt8" name="TOOLBOX" src="img/icon/case_48.png" >
+	    	<img id="npt9" name="INFO PANEL" src="img/icon/gears_48.png">
+	    	
+	    	<!-- FUTURE: Manage / Admin going to secured page framed -->
+	
+	    </div>
+	</div>
+
+
+	<div id="timeline_con2"></div>
+	
+	<div id="panel_data" class="content"><br></div>
+	<div id="panel_data_hide"><a href="Javascript:closedatapanel();"><img src="http://ifis.iowafloodcenter.org/ifis/app/img/close.png" width="30" height="30"></a></div>
+	<div id="panel_info"></div>
+	
+	
+	<!-- prototype of legend -->
+	<div id="legend_toggle" style="display: block;"><img src="http://ifis.iowafloodcenter.org/ifis/app/img/legend.png"></div>
+	<div id="legend_con" style="display: none;">
+		<div class="np_close" onclick="$('#legend_con').hide();$('#legend_toggle').show();"></div>
+		<div id="label">
+			<b>LEGEND</b><br>
+			<div id="clegend" style="display: none;">
+				<img src="http://ifis.iowafloodcenter.org/ifis/app/img/m4.png"> Community<br>
+				<img src="http://ifis.iowafloodcenter.org/ifis/app/img/m9.png"> Community (Assoc)<br>
+	
+					</div>
+			<div id="wlegend" style="display: none;">
+				<img src="http://ifis.iowafloodcenter.org/ifis/app/img/wa4.png"> Arts & Recreation<br>
+				<img src="http://ifis.iowafloodcenter.org/ifis/app/img/wa3.png"> Education<br>
+				<img src="http://ifis.iowafloodcenter.org/ifis/app/img/wa2.png"> Unity Pride Culture<br>
+	
+				<img src="http://ifis.iowafloodcenter.org/ifis/app/img/wa0.png"> N/A
+			</div>
+			<div id="sflegend" style="display: block;">
+				<img src="http://ifis.iowafloodcenter.org/ifis/app/img/m3.png"> Vision<br>
+				<img src="http://ifis.iowafloodcenter.org/ifis/app/img/m8.png"> Segment<br>
+				<img src="http://ifis.iowafloodcenter.org/ifis/app/img/m2.png"> Spoke<br>
+				<img src="http://ifis.iowafloodcenter.org/ifis/app/img/m1.png"> Strategy<br>
+				<img src="http://ifis.iowafloodcenter.org/ifis/app/img/m5.png"> Project<br>
+			</div>
+			<div id="flegend" style="display: none;">
+				<img src="http://ifis.iowafloodcenter.org/ifis/app/img/wa2.png"> Risk High<br>
+				<img src="http://ifis.iowafloodcenter.org/ifis/app/img/wa1.png"> Risk Elevated
+			</div>
+			<div id="rlegend" style="display: none;">
+				<img src="http://ifis.iowafloodcenter.org/ifis/app/inc/inc_createimage.php?str=..&amp;clr=2"> Sensor<br>
+				<img src="http://ifis.iowafloodcenter.org/ifis/app/inc/inc_createimage.php?str=..&amp;clr=1"> Gauge
+			</div>
+			<div id="mlegend">
+				<img src="http://ifis.iowafloodcenter.org/ifis/app/img/p2.png"> Scenario Level<br>
+				<img src="http://ifis.iowafloodcenter.org/ifis/app/img/p4.png"> Basemap Level
+			</div>
+	
+			<div id="sc_legend"></div>
+		</div>
+	</div>
+
+<!--<footer>-->
+
+<!--  <p>Posted by: </p>-->
+<!--  <p>Contact information: <a href="mailto:someone@example.com">-->
+<!--  someone@example.com</a>.</p>-->
+<!--</footer>-->
+    
+    <!-- Needed? Useful? -->
+    <script>
+    	navigator = navigator || {};
+    	navigator.msMaxTouchPoints = navigator.msMaxTouchPoints || 2;
+    	navigator.MaxTouchPoints = navigator.MaxTouchPoints || 2;
+    	navigator.msPointerEnabled = true;
+    	navigator.PointerEnabled = true;
+    </script>
+    <!-- 3rd party scripts -->
+    <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.26&amp;key=AIzaSyC5EEmEnJEbgFiKz3yNuYd0cGN61jF_g2E&amp;libraries=places,visualization"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <!-- Custom scripts -->
+    <script type="text/javascript" src="http://ifis.iowafloodcenter.org/ifis/app/inc/ifis.main.min.js?10.4.41"></script>
+    <script type="text/javascript" src="http://ifis.iowafloodcenter.org/ifis/en/sc/basic/sc_main.js?11.0.0.9.1.0"></script>
+    
+    
+  	<!-- Google Analytics -->
+	<script>
+	//(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	//(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	//m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	//})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	//ga('create', 'UA-72586531-1', 'auto');
+	//ga('send', 'pageview');
+  	</script>
+  	
+</body>
+</html>
+
