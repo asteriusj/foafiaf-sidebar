@@ -168,6 +168,32 @@
 		//alert('visible: ' + view)
 	}
 	</script>
+	<script>
+	// transfer click event on <a tag> with class="nptab" or class null into iframe
+	// send check status change into Frame to .addEventListener handler
+	function toggleInFrame(frame, args, ctx) {
+		console.log('toggleInFrame')
+		//console.log('args ctx', args, ctx)
+		
+		var hasClass = ctx.getAttribute("class"); console.log('hasClass', hasClass)
+		
+		var frame = window.frames[frame] ;
+		// var frame = window.frames['frameProjects'] ;
+		// var frame = window.frames['frameTimelines'] ;
+		//frame.contentWindow.postMessage({call:'toggleID', value: args}, '*');
+		
+		if (hasClass) {
+			//frame.contentWindow.postMessage({call:'hideClass', value: args}, '*');
+			frame.contentWindow.postMessage({call:'uncheckCbx', value: args}, '*');
+			console.log("{call:'uncheckCbx', value: args}, '*'", args)
+		} else {
+			//frame.contentWindow.postMessage({call:'showClass', value: args}, '*');
+			frame.contentWindow.postMessage({call:'checkCbx', value: args}, '*');
+			console.log("{call:'checkCbx', value: args}, '*'", args)
+		}
+
+	}
+  </script>
 
 </head>
 <body onload="initialize()">
@@ -179,10 +205,12 @@
 	<iframe id="frameLocations" src="http://foafiaf.transformrockford.org/locations/index.html" height="100%" width="100%" style="display: block; visibility:visible" allowfullscreen>
 	</iframe>
 
-    <iframe id="frameProjects" src="http://foafiaf.transformrockford.org/projects/index.html" height="100%" width="100%" style="display: none; visibility:hidden" allowfullscreen></iframe>>
+	<!--<iframe id="frameProjects" src="http://foafiaf.transformrockford.org/projects/index.html" height="100%" width="100%" style="display: none; visibility:hidden" allowfullscreen></iframe>>-->
+    <iframe id="frameProjects" src="http://foafiaf-asteriusj.c9users.io/projects/index.2.html" height="100%" width="100%" style="display: none; visibility:hidden" allowfullscreen></iframe>>
     </iframe>
 
-    <iframe id="frameTimelines" src="http://foafiaf.transformrockford.org/timelines/index.html" height="100%" width="100%" style="display: none; visibility:hidden" allowfullscreen></iframe>>
+    <!--<iframe id="frameTimelines" src="http://foafiaf.transformrockford.org/timelines/index.html" height="100%" width="100%" style="display: none; visibility:hidden" allowfullscreen></iframe>>-->
+    <iframe id="frameTimelines" src="http://foafiaf-asteriusj.c9users.io/timelines/index.1.html" height="100%" width="100%" style="display: none; visibility:hidden" allowfullscreen></iframe>>
     </iframe>
 
 
@@ -225,11 +253,11 @@
         		<div class="np_title">LOCATION VIEW</div>
         		<div id="new_layers"></div>
         		<div class="np_title np_sep">SERVICES</div>
-        			<a href="#" id="np275">Traffic Conditions</a>
-        		    <a href="#" id="np274">Bicycling Routes</a>
+        			<a href="#" id="np275" class="np_close">Traffic Conditions</a>
+        		    <a href="#" id="np274" class="np_blue">Bicycling Routes</a>
         		<div class="np_title np_sep">LAYERS</div>
         		<div class="npsub" id="npcon_maplayers">
-        			<a href="#" id="np221">Counties</a>
+        			<a href="#" id="np221" class="np_sep">Counties</a>
         			<a href="#" id="np222">Townships</a>
         			<a href="#" id="np223">City Boundaries</a>
         			<a href="#" id="np231">State Parks</a>
@@ -243,65 +271,89 @@
         	<div id="np_3" class="nptab" style="display: none;">
         		<div class="np_title">PROJECT VIEW</div>
         		<span>Overall view of mission vision down to projects</span>
-        		<a href="#" id="np305">Hide Segments 
-        		    <span>Hide Segment Elements from Diagram</span>
+        		<a href="#" id="np305"  class="npact"  onclick="toggleInFrame('frameProjects', 'cbxsegment', this)"  >Segments 
+        		    <span>Show or Hide Segment Elements in Diagram</span>
         		</a>
-        		<a href="#" id="np305">Hide Spokes 
-        		    <span>Hide Spoke Elements from Diagram</span>
+        		<a href="#" id="np305"  class="npact" onclick="toggleInFrame('frameProjects', 'cbxspoke', this)"  >Spokes 
+        		    <span>Show or Hide Spoke Elements in Diagram</span>
         		</a>
-        		<a href="#" id="np308">Hide Strategies
-        			<span>Hide Strategy Elements from Diagram</span>
+        		<a href="#" id="np308"  class="npact" onclick="toggleInFrame('frameProjects', 'cbxstrategy', this)"  >Strategies
+        			<span>Show or Hide Strategy Elements in Diagram</span>
         		</a>
-        		<a href="#" id="np309">Hide Project
-        			<span>Hide Projects Elements from Diagram</span></a>
+        		<a href="#" id="np309"  class="npact" onclick="toggleInFrame('frameProjects', 'cbxproject', this)"  >Project
+        			<span>Show or Hide Projects Elements in Diagram</span></a>
         	</div>
         	
         	
         	<!--// Timeline view selection tab a visibility options-->
         	<div id="np_4" class="nptab" style="display: none;">
         		<div class="np_title">TIMELINE VIEW</div>
-        		    <a href="#" id="np411" class="npact">Outputs
+        		    <a href="#" id="np411" class="npact"  onclick="toggleInFrame('frameTimelines', 'cbxoutput', this)"  >Outputs
         		        <span>Hide Output Milestones from Diagram</span>
         		    </a>
-        		    <a href="#" id="np422" class="npact">Outcomes
+        		    <a href="#" id="np422" class="npact"  onclick="toggleInFrame('frameTimelines', 'cbxoutcome', this)"  >Outcomes
         		        <span>Hide Outcome Milestones from Diagram</span>
         		    </a>
         		    
         		<div id="new_layers"></div>
         		<!--<div class="np_title np_sep">MILESTONES</div>-->
+
+        		<div class="np_title np_sep">SPOKES</div>
+                <div class="npsub" id="npcon_maplayers">
+        			<a href="#" id="np431" class="npact" onclick="toggleInFrame('frameTimelines', 'cbxSpoke_ArtsRecreation', this)">ArtsRecreation</a>
+        		    <a href="#" id="np432" class="npact" onclick="toggleInFrame('frameTimelines', 'cbxSpoke_EconomyJobs', this)" >EconomyJobs</a>
+        		    <a href="#" id="np433" class="npact" onclick="toggleInFrame('frameTimelines', 'cbxSpoke_Education', this)" >Education</a>
+        		    <a href="#" id="np434" class="npact" onclick="toggleInFrame('frameTimelines', 'cbxSpoke_FamilyNeigborhoods', this)" >FamilyNeigborhoods</a>
+        		    <a href="#" id="np435" class="npact" onclick="toggleInFrame('frameTimelines', 'cbxSpoke_FundingAlignment', this)" >FundingAlignment</a>
+        		    <a href="#" id="np436" class="npact" onclick="toggleInFrame('frameTimelines', 'cbxSpoke_HealthyLifestyles', this)" >HealthyLifestyles</a>
+        		    <a href="#" id="np437" class="npact" onclick="toggleInFrame('frameTimelines', 'cbxSpoke_LeadershipYouth', this)" >LeadershipYouth</a>
+        		    <a href="#" id="np438" class="npact" onclick="toggleInFrame('frameTimelines', 'cbxSpoke_LivingtheBrand', this)" >LivingtheBrand</a>
+        		    <a href="#" id="np439" class="npact" onclick="toggleInFrame('frameTimelines', 'cbxSpoke_PhysicalInfrastructure', this)" >PhysicalInfrastructure</a>
+        		    <a href="#" id="np4310" class="npact" onclick="toggleInFrame('frameTimelines', 'cbxSpoke_Planning', this)">Planning</a>
+        		    <a href="#" id="np4311" class="npact" onclick="toggleInFrame('frameTimelines', 'cbxSpoke_Quality', this)" >Quality</a>
+        		    <a href="#" id="np4312" class="npact" onclick="toggleInFrame('frameTimelines', 'cbxSpoke_UnityPrideCulture', this)" >UnityPrideCulture</a>
+        	    </div> 
   
         		<div class="np_title np_sep">YEARS</div>
         		<div class="npsub" id="npcon_maplayers">
-        			<a href="#" id="np42017" class="npact">2017 <span>Hide 2017 Milestones</span></a>
-        			<a href="#" id="np42018" class="npact">2018 <span>Hide 2018 Milestones</span></a>
-        			<a href="#" id="np42018" class="npact">2019 <span>Hide 2019 Milestones</span></a>
-        			<a href="#" id="np42019" class="npact">2020 <span>Hide 2020 Milestones</span></a>
-        			<a href="#" id="np42021" class="npact">2021 <span>Hide 2021 Milestones</span></a>
-        			<a href="#" id="np42022" class="npact">2022 <span>Hide 2022 Milestones</span></a>
-        			<a href="#" id="np42023" class="npact">2023 <span>Hide 2023 Milestones</span></a>
-        			<a href="#" id="np42024" class="npact">2024 <span>Hide 2024 Milestones</span></a>
-        			<a href="#" id="np42025" class="npact">2025 <span>Hide 2025 Milestones</span></a>
+        			<a href="#" id="np42017" class="npact" onclick="toggleInFrame('frameTimelines', 'cbx2017', this)" >2017 <span>Hide 2017 Milestones</span></a>
+        			<a href="#" id="np42018" class="npact" onclick="toggleInFrame('frameTimelines', 'cbx2018', this)" >2018 <span>Hide 2018 Milestones</span></a>
+        			<a href="#" id="np42018" class="npact" onclick="toggleInFrame('frameTimelines', 'cbx2019', this)" >2019 <span>Hide 2019 Milestones</span></a>
+        			<a href="#" id="np42019" class="npact" onclick="toggleInFrame('frameTimelines', 'cbx2020', this)" >2020 <span>Hide 2020 Milestones</span></a>
+        			<a href="#" id="np42021" class="npact" onclick="toggleInFrame('frameTimelines', 'cbx2021', this)" >2021 <span>Hide 2021 Milestones</span></a>
+        			<a href="#" id="np42022" class="npact" onclick="toggleInFrame('frameTimelines', 'cbx2022', this)" >2022 <span>Hide 2022 Milestones</span></a>
+        			<a href="#" id="np42023" class="npact" onclick="toggleInFrame('frameTimelines', 'cbx2023', this)" >2023 <span>Hide 2023 Milestones</span></a>
+        			<a href="#" id="np42024" class="npact" onclick="toggleInFrame('frameTimelines', 'cbx2024', this)" >2024 <span>Hide 2024 Milestones</span></a>
+        			<a href="#" id="np42025" class="npact" onclick="toggleInFrame('frameTimelines', 'cbx2025', this)" >2025 <span>Hide 2025 Milestones</span></a>
         		</div>
         		
-        		<div class="np_title np_sep">SPOKES</div>
-                <div class="npsub" id="npcon_maplayers">
-        			<a href="#" id="np431" class="npact">ArtsRecreation</a>
-        		    <a href="#" id="np432" class="npact">EconomyJobs</a>
-        		    <a href="#" id="np433" class="npact">Education</a>
-        		    <a href="#" id="np434" class="npact">FamilyNeigborhoods</a>
-        		    <a href="#" id="np435" class="npact">FundingAlignment</a>
-        		    <a href="#" id="np436" class="npact">HealthyLifestyles</a>
-        		    <a href="#" id="np437" class="npact">LeadershipYouth</a>
-        		    <a href="#" id="np438" class="npact">LivingtheBrand</a>
-        		    <a href="#" id="np439" class="npact">PhysicalInfrastructure</a>
-        		    <a href="#" id="np4310" class="npact">Planning</a>
-        		    <a href="#" id="np4311" class="npact">Quality</a>
-        		    <a href="#" id="np4312" class="npact">UnityPrideCulture</a>
-        	    </div> 
-
         	</div>
+                	
                 		
-            
+   <!--         <div id="np_5" class="nptab" style="display: none;">-->
+			<!--	<div class="np_title">DATA RESOURCES</div>-->
+			<!--	<a href="#" id="np10">River Communities-->
+			<!--		<span>All communities upstream to the selected community</span></a>-->
+			<!--			<a href="#" id="np20">Stream Gauges-->
+			<!--		<span>IFC + USGS + NWS + USACE gauges</span></a>-->
+			<!--			<a href="#" id="np57">Rain Gauges</a>-->
+			<!--	<a href="#" id="np9">Reservoirs</a>-->
+			<!--	<a href="#" id="np13">Groundwater Wells</a>-->
+			<!--			<a href="#" id="np8">Soil Moisture Gauges</a>-->
+			<!--	<div class="np_title np_sep" id="data_tools" style="display: none;">DATA ANALYTICS</div>-->
+			<!--	<div id="river_view" style="display: none;"><a href="#" id="np99">Multi-Sensor River View-->
+			<!--		<span>Time series graphs for all sensors within<br>the watershed of selected community</span></a></div>-->
+			<!--</div>-->
+   <!--         <div id="np_6" class="nptab" style="display: none;">-->
+			<!--	<div class="np_title">PUBLIC HEALTH &amp; FLOOD RECOVERY</div>-->
+			<!--	<a href="#" id="np134">Red Cross Iowa Shelters <img src="redcross.png" class="redcross"></a>-->
+			<!--	<a href="#" id="np135">County Public Health Departments</a>-->
+			<!--	<a href="#" id="np136">Trauma Centers</a>-->
+			<!--	<a href="#" id="np137">Waste Outfalls</a>-->
+			<!--	<a href="#" id="np138">Waste Water Treatment Outfalls</a>-->
+			<!--</div>-->
+			
+			
             <!--// prototype of additional tools, perhaps path finding and semantic serach ala Neo4j-->
             <div id="np_8" class="nptab" style="display: none;">
         		<div class="np_title">TOOLBOX</div>
@@ -314,6 +366,23 @@
         			<span>Click on a location on the map, and automatically find the YYY boundary...</span></a>
         			<a href="#" id="np804">XXX Risk Calculator
         			<span>Return period corresponds to the probability of the annual maximum river discharge exceeding a certain (given) value. For example, return period of 100 yrs corresponds to the probability of 1% of discharge exceeding that value, and return period of 10 yrs corresponds to 10% chance of flow exceeding a different (lower) value in a given year.</span></a>
+        		
+        		<div class="np_title">DATA RESOURCES</div>
+				<a href="#" id="np10">River Communities
+					<span>All communities upstream to the selected community</span></a>
+				<a href="#" id="np20">Stream Gauges
+					<span>IFC + USGS + NWS + USACE gauges</span></a>
+						<!--<a href="#" id="np57">Rain Gauges</a>-->
+						<!--<a href="#" id="np9">Reservoirs</a>-->
+						<!--<a href="#" id="np13">Groundwater Wells</a>-->
+						<!--<a href="#" id="np8">Soil Moisture Gauges</a>-->
+			
+				<div class="np_title np_sep" id="data_tools" s>DATA ANALYTICS</div>
+					<!--<div id="river_view" >-->
+					<!--	<a href="#" id="np99">Multi-Sensor River View-->
+					<!--	<span>Time series graphs for all sensors within<br>the watershed of selected community</span></a></div>-->
+					<!--</div>-->
+        	
         	</div>
     	
     	
@@ -382,7 +451,7 @@
 	<a id="iwis_home" href="http://www.transformrockford.org/" onmouseover="$('#poweredby').show()" onmouseout="$('#poweredby').hide()">
 	    <img src="img/icon/trlogo.png">
 	</a>
-	<div id="poweredby" style="font-size: 100%">Provided by      </div>
+	<div id="poweredby" style="font-size: 100%">Provided by     %20</div>
 	
 	<div id="new_panel_icons" style="display: block;">
 	    <div id="new_icongroup">
