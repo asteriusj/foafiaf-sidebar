@@ -1,5 +1,128 @@
 
 
+/* pneal data and content*/
+.content {
+    -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0 3px 7px;
+    -moz-box-shadow: rgba(0, 0, 0, 0.5) 0 3px 7px
+}
+
+.content {
+    *border: 1px solid;
+    *border-color: #CCC #DDD #CCC
+}
+
+.content:nth-child(1n) {
+    border: none
+}
+
+.content {
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -o-border-radius: 10px;
+    -khtml-border-radius: 10px
+}
+
+#loading a {
+    float: none;
+    margin: 0
+}
+
+#panel_data {
+    display: none;
+    position: absolute;
+    height: 300px;
+    width: 300px;
+    z-index: 30;
+    background: #FFF;
+    padding: 5px;
+    border: 0 solid #000;
+    top: 0;
+    left: 0
+}
+
+#panel_data_hide {
+    display: none;
+    position: absolute;
+    top: 96px;
+    right: 8px;
+    z-index: 35
+}
+
+/** nptab */
+
+.nptab {
+    display: none;
+    float: left;
+    clear: both;
+    margin-left: -3px
+}
+
+.nptab span {
+    display: none
+}
+
+.nptab a {
+    float: left;
+    font-size: 20px;
+    padding: 7px 0 7px 36px;
+    width: 260px;
+    color: #000;
+    border: 0 solid #777;
+    text-decoration: none;
+    background: url(../img/icon2/2/check1.png) no-repeat -1px 3px
+}
+
+.nptab a:hover {
+    color: #800;
+    background: url(../img/icon2/2/check2.png) no-repeat -1px 3px
+}
+
+.nptab a:active {
+    background: url(../img/icon2/2/check3.png) no-repeat -1px 3px
+}
+
+.nptab .npact {
+    background: url(../img/icon2/2/check3.png) no-repeat -1px 3px
+}
+
+.nptab .npact:hover {
+    background: url(../img/icon2/2/check3.png) no-repeat -1px 3px
+}
+
+
+.nptab .sm_check {
+    font-size: 17px;
+    background-position: -2px -2px;
+    padding: 5px 0 5px 31px
+}
+
+.nptab .sm_check:hover {
+    background-position: -2px -2px
+}
+
+#np_sidepanel .nptab a {
+    background: url(../img/icon2/1/check1.png) no-repeat -2px -2px
+}
+
+#np_sidepanel .nptab a:hover {
+    background: url(../img/icon2/1/check2.png) no-repeat -2px -2px
+}
+
+#np_sidepanel .nptab a:active {
+    background: url(../img/icon2/1/check3.png) no-repeat -2px -2px
+}
+
+#np_sidepanel .nptab .npact {
+    background: url(../img/icon2/1/check3.png) no-repeat -2px -2px
+}
+
+#np_sidepanel .nptab .npact:hover {
+    background: url(../img/icon2/1/check3.png) no-repeat -2px -2px
+}
+
+
+
   .navbar-inverse {
             border-radius: 0;
         }
