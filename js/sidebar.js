@@ -1,4 +1,138 @@
 
+function changeView(view) {
+		
+		console.log('changeView', view)
+		
+		if (view === 'network') {
+			
+			var networkFrame = document.getElementById("frameNetworks");  
+			networkFrame.style.visibility="visible";
+			networkFrame.style.display="block";
+			networkFrame.style.opacity= 100 ;
+			
+			var timelineFrame = document.getElementById("frameTimelines");  
+			timelineFrame.style.visibility="hidden";
+			timelineFrame.style.display="none";
+			timelineFrame.style.opacity= 0 ;
+			
+			var projectFrame = document.getElementById("frameProjects");  
+			projectFrame.style.visibility="hidden";
+			projectFrame.style.display="none";
+			projectFrame.style.opacity= 0 ;
+			
+			var locationFrame = document.getElementById("frameLocations");  
+			locationFrame.style.visibility="hidden";
+			locationFrame.style.display="none";
+			locationFrame.style.opacity= 0 ;
+			
+		}
+		if (view === 'location') {
+			
+			var networkFrame = document.getElementById("frameNetworks");  
+			networkFrame.style.visibility="hidden";
+			networkFrame.style.display="none";
+			networkFrame.style.opacity= 0 ;
+			
+			var timelineFrame = document.getElementById("frameTimelines");  
+			timelineFrame.style.visibility="hidden";
+			timelineFrame.style.display="none";
+			timelineFrame.style.opacity= 0 ;
+			
+			var projectFrame = document.getElementById("frameProjects");  
+			projectFrame.style.visibility="hidden";
+			projectFrame.style.display="none";
+			projectFrame.style.opacity= 0 ;
+			
+			var locationFrame = document.getElementById("frameLocations");  
+			locationFrame.style.visibility="visible";
+			locationFrame.style.display="block";
+			locationFrame.style.opacity= 100 ;
+			
+		}
+		if (view === 'project') {
+			
+			var networkFrame = document.getElementById("frameNetworks");  
+			networkFrame.style.visibility="hidden";
+			networkFrame.style.display="none";
+			networkFrame.style.opacity= 0 ;
+			
+			var timelineFrame = document.getElementById("frameTimelines");  
+			timelineFrame.style.visibility="hidden";
+			timelineFrame.style.display="none";
+			timelineFrame.style.opacity= 0 ;
+			
+			var projectFrame = document.getElementById("frameProjects");  
+			projectFrame.style.visibility="visible";
+			projectFrame.style.display="block";
+			projectFrame.style.opacity= 100 ;
+			
+			var locationFrame = document.getElementById("frameLocations");  
+			locationFrame.style.visibility="hidden";
+			locationFrame.style.display="none"
+			locationFrame.style.opacity= 0 ;
+			
+		}
+		if (view === 'timeline') {
+					
+			var networkFrame = document.getElementById("frameNetworks");  
+			networkFrame.style.visibility="hidden";
+			networkFrame.style.display="none";
+			networkFrame.style.opacity= 0 ;
+			
+			var timelineFrame = document.getElementById("frameTimelines");  
+			timelineFrame.style.visibility="visible";
+			timelineFrame.style.display="block";
+			timelineFrame.style.opacity= 100 ;
+			
+			var projectFrame = document.getElementById("frameProjects");  
+			projectFrame.style.visibility="hidden";
+			projectFrame.style.display="none";
+			projectFrame.style.opacity= 0 ;
+			
+			var locationFrame = document.getElementById("frameLocations");  
+			locationFrame.style.visibility="hidden";
+			locationFrame.style.display="none";
+			locationFrame.style.opacity= 0 ;
+			
+		}
+		
+		console.log('networkFrame.style.visibility', networkFrame.style.visibility)
+		console.log('timelineFrame.style.visibility', timelineFrame.style.visibility)
+		console.log('projectFrame.style.visibility', projectFrame.style.visibility)
+		console.log('locationFrame.style.visibility', locationFrame.style.visibility)
+		//alert('visible: ' + view)
+}
+	
+	
+// transfer click event on <a tag> with class="nptab" or class null into iframe
+// send check status change into Frame to .addEventListener handler
+function toggleInFrame(frame, args, ctx) {
+		console.log('toggleInFrame')
+		//console.log('args ctx', args, ctx)
+		
+		var hasClass = ctx.getAttribute("class"); console.log('hasClass', hasClass)
+		
+		var frame = window.frames[frame] ;
+		// var frame = window.frames['frameProjects'] ;
+		// var frame = window.frames['frameTimelines'] ;
+		//frame.contentWindow.postMessage({call:'toggleID', value: args}, '*');
+		
+		if (hasClass) {
+			//frame.contentWindow.postMessage({call:'hideClass', value: args}, '*');
+			frame.contentWindow.postMessage({call:'uncheckCbx', value: args}, '*');
+			console.log("{call:'uncheckCbx', value: args}, '*'", args)
+		} else {
+			//frame.contentWindow.postMessage({call:'showClass', value: args}, '*');
+			frame.contentWindow.postMessage({call:'checkCbx', value: args}, '*');
+			console.log("{call:'checkCbx', value: args}, '*'", args)
+		}
+
+}
+	
+
+
+
+
 function np_links(a, b) {
     switch (a) {
         case "10":
